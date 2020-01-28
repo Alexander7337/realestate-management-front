@@ -1,0 +1,27 @@
+<p>lease-out works!</p>
+<div>{{leaseOutModel.name}}</div>
+
+<div class="container">
+    <form id="lease-out-form-id" #heroForm="ngForm">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2">Property Name: </label>
+            <input type="text" class="form-control col-sm-2" id="name" [(ngModel)]="leaseOutModel.name" name="name">
+                TODO: remove this: {{leaseOutModel.name}}
+        </div>
+    
+        <div class="form-group row">
+            <label for="type" class="col-sm-2">Property Type: </label>
+            <select id="type" form="lease-out-form-id" class="form-control col-sm-2" [(ngModel)]="leaseOutModel.type" name="type">
+                <option value="APARTMENT">APARTMENT</option>
+                <option value="ROOM">ROOM</option>
+                <option value="HOUSE">HOUSE</option>
+                <option value="OTHER">OTHER</option>
+            </select>
+                TODO: remove this: {{leaseOutModel.type}}
+        </div>
+    
+        <div class="row">
+            <button type="button" class="btn btn-primary col-sm-1" (click)="createLeaseOut()" >Submit</button>
+        </div>       
+    </form>
+</div>
