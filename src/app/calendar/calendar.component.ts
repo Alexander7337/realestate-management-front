@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import {
   CalendarEvent,
@@ -10,11 +11,12 @@ import {
 } from 'angular-calendar';
 import { WeekViewHour } from 'calendar-utils';
 
+import { DataService } from '../services/data.service';
+
 @Component({
   selector: 'mwl-demo-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'calendar.component.html',
-  // don't do this in your app, its only so the styles get applied globally
   styles: [
     `
       .cal-day-selected,
@@ -25,7 +27,8 @@ import { WeekViewHour } from 'calendar-utils';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit { 
+
   view: CalendarView = CalendarView.Month;
 
   viewDate: Date = new Date();
@@ -39,6 +42,15 @@ export class CalendarComponent {
   events: CalendarEvent[] = [];
 
   selectedDays: any = [];
+
+  message: string;
+
+  constructor(private data: DataService) { 
+  }
+
+  ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
+  }
 
   dayClicked(day: CalendarMonthViewDay): void {
     this.selectedMonthViewDay = day;
@@ -90,5 +102,9 @@ export class CalendarComponent {
         }
       });
     });
+  }
+
+  sendAvailabilityClicked() {
+    console.log('Function invoked', this.selectedDays);
   }
 }

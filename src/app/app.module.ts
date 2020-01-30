@@ -14,6 +14,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { RouterModule } from '@angular/router';
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     FlatpickrModule.forRoot(),
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

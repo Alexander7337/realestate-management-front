@@ -1,4 +1,4 @@
-<p>calendar works!</p>
+<p>Calendar works! Property: {{message}}</p>
 
 <div class="alert alert-info">
   Click on a month view day or a day view hour to select it
@@ -27,4 +27,8 @@
     (hourSegmentClicked)="hourSegmentClicked($event.date)"
   >
   </mwl-calendar-day-view>
+</div>
+
+<div>
+    <button type="submit" (click)="sendAvailabilityClicked()">Send Availability</button>
 </div>
