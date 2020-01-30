@@ -10,6 +10,7 @@ import { DataService } from '../services/data.service';
   templateUrl: './lease-out.component.html',
   styleUrls: ['./lease-out.component.scss']
 })
+
 export class LeaseOutComponent implements OnInit {
 
   public leaseOutModel: LeaseOut;
@@ -18,7 +19,6 @@ export class LeaseOutComponent implements OnInit {
 
   constructor(private propertyService: PropertyService, private data: DataService) {
     this.leaseOutModel = new LeaseOut("Default Name Of Property", RealEstateTypes.Apartment);
-    
   }
 
   ngOnInit() {
@@ -36,6 +36,4 @@ export class LeaseOutComponent implements OnInit {
     //Share data between components
     this.data.changeMessage(this.leaseOutModel.name);
   }
-
-
 }
