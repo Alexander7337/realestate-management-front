@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { LeaseOut } from '../lease-out/lease-out.model'
+import { LeaseOut } from '../models/lease-out.model'
+import { RealEstateTypes } from '../models/real-estate-types.enum';
+import { UpdatePeriod } from '../models/update-period.model';
+import { CurrencyTypes } from '../models/currency-types.enum';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +41,30 @@ export class PropertyService {
       console.log("Post Request successful value returned in body", res);
       },
       error => {
-        console.log("Post Request in error", error);
+        console.log("Post Request returned error message", error);
       },
       () => {
         console.log("The Post observable is now completed.");
       }
     );
+  }
+
+  updatePeriodByProperty(startDate: Date, endDate: Date, name: string, amount: number, currencyType: string) {
+    console.log("Request is made by updatePeriodByProperty method");
+
+    let currency: CurrencyTypes = CurrencyTypes[currencyType];
+    let updatePeriodDTO = new UpdatePeriod(name, startDate, endDate, amount, currency);
+
+    return this.httpClient.post('https://localhost:44393/realestate/UpdatePeriodByProperty', updatePeriodDTO).subscribe(
+      res => {
+        console.log("Put Request successful value returned in body", res);
+      },
+      error => {
+        console.log("Post Request returned error message", error)
+      },
+      () => {
+        console.log("The Put observable is now completed.")
+      }
+    )
   }
 }

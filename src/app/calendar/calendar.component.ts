@@ -12,6 +12,8 @@ import {
 import { WeekViewHour } from 'calendar-utils';
 
 import { DataService } from '../services/data.service';
+import { PropertyService } from '../services/property.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'mwl-demo-component',
@@ -45,11 +47,15 @@ export class CalendarComponent implements OnInit {
 
   message: string;
 
-  constructor(private data: DataService) { 
+  constructor(private data: DataService, private propertyService: PropertyService) { 
   }
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
+  }
+
+  updatePeriod() {
+    this.propertyService.updatePeriodByProperty(new Date(), new Date(), "TEST", 85, "BGN")
   }
 
   dayClicked(day: CalendarMonthViewDay): void {

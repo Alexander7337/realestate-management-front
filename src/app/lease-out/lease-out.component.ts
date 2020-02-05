@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LeaseOut } from './lease-out.model';
-import { RealEstateTypes } from './real-estate-types.enum';
+import { LeaseOut } from '../models/lease-out.model';
+import { RealEstateTypes } from '../models/real-estate-types.enum';
 import { PropertyService } from '../services/property.service'
 import { DataService } from '../services/data.service';
 

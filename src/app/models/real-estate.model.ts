@@ -1,4 +1,4 @@
-import { RealEstateTypes } from '../lease-out/real-estate-types.enum';
+import { RealEstateTypes } from './real-estate-types.enum';
 
 export class RealEstate {
 
